@@ -44,6 +44,12 @@ class GameState extends FlxState {
 			FlxG.switchState(PauseState.new);
 		}
 
-		debugText.text = "Jump State: " + player.jumpState.toString();
+		var jumpStateString:String = switch (player.jumpState) {
+			case GROUNDED: "GROUNDED";
+			case RISING: "RISING";
+			case FALLING: "FALLING";
+		}
+
+		debugText.text = "Jump State: " + jumpStateString;
 	}
 }
