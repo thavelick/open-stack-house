@@ -51,6 +51,7 @@ class Player extends FlxSprite
 
     private function checkCollisions():Void
     {
+        // ai! Let's extract tilemap to an object var set in the constructor
         var tilemap = FlxG.state.members[2]; // Tilemap is at index 2
 
         // Check for horizontal collisions
