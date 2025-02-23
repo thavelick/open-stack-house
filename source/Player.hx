@@ -77,14 +77,18 @@ class Player extends FlxSprite
 
         // Ground collision check
         var tilemap = FlxG.state.members[2]; // Tilemap is at index 2
-        var ground = FlxG.state.members[1]; // Ground line is at index 1
         
-        if (FlxG.collide(this, tilemap) || y + height >= ground.y)
+        // Check collision with tilemap
+        if (FlxG.collide(this, tilemap))
         {
-            if (y + height >= ground.y)
-            {
-                y = ground.y - height;
-            }
+            velocity.y = 0;
+            canJump = true;
+        }
+        
+        // Check collision with ground (32 pixels from bottom)
+        if (y + height >= FlxG.height - 32)
+        {
+            y = FlxG.height - 32 - height;
             velocity.y = 0;
             canJump = true;
         }
