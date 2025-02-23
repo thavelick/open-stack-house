@@ -15,6 +15,7 @@ class Tilemap extends FlxGroup
     public function new()
     {
         super();
+        immovable = true; // Make entire tilemap immovable
         createTiles();
     }
 
