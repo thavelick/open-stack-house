@@ -32,6 +32,6 @@ class PauseState extends FlxState
 
     private function resumeGame():Void
     {
-        FlxG.switchState(new GameState());
+        FlxG.switchState(GameState.new);
     }
 }

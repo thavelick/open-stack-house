@@ -38,7 +38,7 @@ class GameState extends FlxState
 
         if (FlxG.keys.justPressed.P)
         {
-            FlxG.switchState(new PauseState());
+            FlxG.switchState(PauseState.new);
         }
     }
 }
