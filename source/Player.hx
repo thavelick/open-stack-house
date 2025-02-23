@@ -4,14 +4,20 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.util.FlxColor;
 
+enum JumpState
+{
+	GROUNDED;
+	RISING;
+	FALLING;
+}
+
 class Player extends FlxSprite
 {
     private static inline var SPEED:Float = 100;
     private static inline var RISING_GRAVITY:Float = 500;
     private static inline var FALLING_GRAVITY:Float = 1200;
     private static inline var JUMP_FORCE:Float = -195;
-    private var canJump:Bool = true;
-    private var isRising:Bool = false;
+    private var jumpState:JumpState = GROUNDED;
 
     public function new(x:Float, y:Float)
     {
@@ -34,10 +40,12 @@ class Player extends FlxSprite
 
     public function jump():Void
     {
-        if (canJump)
+        switch (jumpState)
         {
-            velocity.y = JUMP_FORCE;
-            canJump = false;
+            case GROUNDED:
+                velocity.y = JUMP_FORCE;
+                jumpState = RISING;
+            default:
         }
     }
 
@@ -58,7 +66,7 @@ class Player extends FlxSprite
             if (velocity.y == 0) // We're standing on something
             {
                 velocity.y = 0;
-                canJump = true;
+                jumpState = GROUNDED;
             }
         }
 
@@ -67,7 +75,7 @@ class Player extends FlxSprite
         {
             y = FlxG.height - 32 - height;
             velocity.y = 0;
-            canJump = true;
+            jumpState = GROUNDED;
         }
 
         // Screen bounds
@@ -105,12 +113,12 @@ class Player extends FlxSprite
         // Apply different gravity based on movement direction
         if (velocity.y < 0)
         {
-            isRising = true;
+            jumpState = RISING;
             acceleration.y = RISING_GRAVITY;
         }
         else if (velocity.y > 0)
         {
-            isRising = false;
+            jumpState = FALLING;
             acceleration.y = FALLING_GRAVITY;
         }
 
