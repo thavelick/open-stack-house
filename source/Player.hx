@@ -43,13 +43,13 @@ class Player extends FlxSprite
         velocity.x = 0;
 
         // Movement
-        if (FlxG.keys.pressed.LEFT)
-        {
-            velocity.x = -SPEED;
-        }
         if (FlxG.keys.pressed.RIGHT)
         {
             velocity.x = SPEED;
+        }
+        if (FlxG.keys.pressed.LEFT)
+        {
+            velocity.x = -SPEED;
         }
 
         // Check for horizontal collisions
