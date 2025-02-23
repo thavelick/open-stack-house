@@ -41,6 +41,40 @@ class Player extends FlxSprite
         }
     }
 
+    private function checkCollisions():Void
+    {
+        var tilemap = FlxG.state.members[2]; // Tilemap is at index 2
+
+        // Check collision with tilemap
+        if (FlxG.collide(this, tilemap))
+        {
+            // Only set velocity.y to zero if we're landing on top of a block
+            if (velocity.y == 0) // We're standing on something
+            {
+                velocity.y = 0;
+                canJump = true;
+            }
+        }
+
+        // Check collision with ground (32 pixels from bottom)
+        if (y + height >= FlxG.height - 32)
+        {
+            y = FlxG.height - 32 - height;
+            velocity.y = 0;
+            canJump = true;
+        }
+
+        // Screen bounds
+        if (x < 0)
+        {
+            x = 0;
+        }
+        else if (x > FlxG.width - width)
+        {
+            x = FlxG.width - width;
+        }
+    }
+
     override public function update(elapsed:Float):Void
     {
         // Handle input and modify velocities first
@@ -83,37 +117,7 @@ class Player extends FlxSprite
         // Call super.update() to apply velocities
         super.update(elapsed);
 
-
-        // Ground collision check
-        var tilemap = FlxG.state.members[2]; // Tilemap is at index 2
-
-        // Check collision with tilemap
-        if (FlxG.collide(this, tilemap))
-        {
-            // Only set velocity.y to zero if we're landing on top of a block
-            if (velocity.y == 0) // We're standing on something
-            {
-                velocity.y = 0;
-                canJump = true;
-            }
-        }
-
-        // Check collision with ground (32 pixels from bottom)
-        if (y + height >= FlxG.height - 32)
-        {
-            y = FlxG.height - 32 - height;
-            velocity.y = 0;
-            canJump = true;
-        }
-
-        // Screen bounds
-        if (x < 0)
-        {
-            x = 0;
-        }
-        else if (x > FlxG.width - width)
-        {
-            x = FlxG.width - width;
-        }
+        // Handle all collisions
+        checkCollisions();
     }
 }
