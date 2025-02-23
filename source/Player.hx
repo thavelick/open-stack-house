@@ -90,6 +90,7 @@ class Player extends FlxSprite
             moveLeft();
         }
 
+	// ai! this should go in the collisions funciton, right?
         // Check for horizontal collisions
         if (velocity.x != 0)
         {
