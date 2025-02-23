@@ -17,7 +17,7 @@ class Player extends FlxSprite
     {
         super(x, y);
         makeGraphic(32, 32, FlxColor.PURPLE);
-        acceleration.y = GRAVITY; // Add gravity
+        acceleration.y = RISING_GRAVITY; // Add initial gravity
     }
 
     override public function update(elapsed:Float):Void
