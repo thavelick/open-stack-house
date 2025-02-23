@@ -45,6 +45,12 @@ class Player extends FlxSprite
     {
         var tilemap = FlxG.state.members[2]; // Tilemap is at index 2
 
+        // Check for horizontal collisions
+        if (velocity.x != 0)
+        {
+            FlxG.collide(this, tilemap);
+        }
+
         // Check collision with tilemap
         if (FlxG.collide(this, tilemap))
         {
@@ -88,13 +94,6 @@ class Player extends FlxSprite
         if (FlxG.keys.pressed.LEFT)
         {
             moveLeft();
-        }
-
-	// ai! this should go in the collisions funciton, right?
-        // Check for horizontal collisions
-        if (velocity.x != 0)
-        {
-            FlxG.collide(this, FlxG.state.members[2]); // Tilemap is at index 2
         }
 
         // Jumping
