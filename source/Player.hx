@@ -21,6 +21,22 @@ class Player extends FlxSprite
         immovable = false; // Player is movable
     }
 
+    private function getTileBelow():FlxSprite
+    {
+        // Check for a tile directly below the player
+        var tilemap:Tilemap = cast FlxG.state.members[2];
+        for (tile in tilemap.members)
+        {
+            var block:FlxSprite = cast tile;
+            if (block != null && block.overlapsPoint(getPosition()) && 
+                block.y >= y + height && block.x < x + width && block.x + block.width > x)
+            {
+                return block;
+            }
+        }
+        return null;
+    }
+
     override public function update(elapsed:Float):Void
     {
         // Handle input and modify velocities first
@@ -86,6 +102,15 @@ class Player extends FlxSprite
             {
                 velocity.y = 0;
                 canJump = true;
+            }
+        }
+        else if (velocity.y == 0)
+        {
+            // Check if we're standing on a block
+            var tileBelow = getTileBelow();
+            if (tileBelow == null)
+            {
+                canJump = false;
             }
         }
         
