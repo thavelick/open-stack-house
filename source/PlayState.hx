@@ -9,7 +9,7 @@ class PlayState extends FlxState
 	{
 		super.create();
 
-		var text = new FlxText(0, 0, 0, "Open Stack House", 64);
+		var text = new FlxText(0, 0, 0, "Open Stack House", 40);
 		text.screenCenter();
 		add(text);
 	}
