@@ -34,17 +34,20 @@ class Tilemap extends FlxGroup
             FlxColor.PURPLE
         ];
 
-        // Create the ground row
+        // Create blocks only on the ground line
         for (x in 0...8) // 8 columns
         {
             // Skip player start column
             if (x == PLAYER_START_X)
                 continue;
 
-            // Always create ground blocks
-            var tile = new FlxSprite(x * TILE_SIZE, GROUND_LEVEL * TILE_SIZE);
-            tile.makeGraphic(TILE_SIZE, TILE_SIZE, blockColors[FlxG.random.int(0, blockColors.length - 1)]);
-            add(tile);
+            // 50% chance to create a ground block
+            if (FlxG.random.bool(50))
+            {
+                var tile = new FlxSprite(x * TILE_SIZE, GROUND_LEVEL * TILE_SIZE);
+                tile.makeGraphic(TILE_SIZE, TILE_SIZE, blockColors[FlxG.random.int(0, blockColors.length - 1)]);
+                add(tile);
+            }
         }
 
         // Create stacked blocks above ground
@@ -57,7 +60,7 @@ class Tilemap extends FlxGroup
                     continue;
 
                 // Only create block if there's a block below
-                if (getTileAt(x, y + 1) != null && FlxG.random.bool(70)) // 70% chance to create a block
+                if (getTileAt(x, y + 1) != null && FlxG.random.bool(30)) // 30% chance to create a block
                 {
                     var tile = new FlxSprite(x * TILE_SIZE, y * TILE_SIZE);
                     tile.makeGraphic(TILE_SIZE, TILE_SIZE, blockColors[FlxG.random.int(0, blockColors.length - 1)]);
