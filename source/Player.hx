@@ -16,7 +16,7 @@ class Player extends FlxSprite {
 	private static inline var FALLING_GRAVITY:Float = 1200;
 	private static inline var JUMP_FORCE:Float = -195;
 
-	private var jumpState:JumpState = GROUNDED;
+	public var jumpState:JumpState = GROUNDED;
 	private var tilemap:Tilemap;
 
 	public function new(x:Float, y:Float) {
