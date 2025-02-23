@@ -7,9 +7,11 @@ import flixel.util.FlxColor;
 class Player extends FlxSprite
 {
     private static inline var SPEED:Float = 200;
-    private static inline var GRAVITY:Float = 500;
+    private static inline var RISING_GRAVITY:Float = 500;
+    private static inline var FALLING_GRAVITY:Float = 800;
     private static inline var JUMP_FORCE:Float = -195;
     private var canJump:Bool = true;
+    private var isRising:Bool = false;
 
     public function new(x:Float, y:Float)
     {
@@ -49,10 +51,22 @@ class Player extends FlxSprite
             }
         }
         
+        // Apply different gravity based on movement direction
+        if (velocity.y < 0)
+        {
+            isRising = true;
+            acceleration.y = RISING_GRAVITY;
+        }
+        else if (velocity.y > 0)
+        {
+            isRising = false;
+            acceleration.y = FALLING_GRAVITY;
+        }
+
         // Call super.update() to apply velocities
         super.update(elapsed);
         
-        trace('Player position: (${x}, ${y}) Velocity: (${velocity.x}, ${velocity.y})');
+        trace('Player position: (${x}, ${y}) Velocity: (${velocity.x}, ${velocity.y}) isRising: $isRising');
 
         // Ground collision check
         if (y >= FlxG.height - 64)
