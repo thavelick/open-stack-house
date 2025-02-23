@@ -9,7 +9,7 @@ class Player extends FlxSprite
     private static inline var SPEED:Float = 200;
     private static inline var GRAVITY:Float = 0;
     private static inline var JUMP_FORCE:Float = -300;
-    private var canJump:Bool = false;
+    private var canJump:Bool = true;
 
     public function new(x:Float, y:Float)
     {
@@ -36,11 +36,22 @@ class Player extends FlxSprite
         }
 
         // Jumping
-        if ((FlxG.keys.justPressed.UP || FlxG.keys.justPressed.X) && canJump)
+        if (FlxG.keys.justPressed.UP || FlxG.keys.justPressed.X)
         {
-            velocity.y = JUMP_FORCE;
-            canJump = false;
+            trace("Jump pressed");
+            if (canJump)
+            {
+                trace("Applying jump force");
+                velocity.y = JUMP_FORCE;
+                canJump = false;
+            }
+            else
+            {
+                trace("Can't jump - already in air");
+            }
         }
+        
+        trace('Player position: (${x}, ${y}) Velocity: (${velocity.x}, ${velocity.y})');
 
         // Ground collision check
         if (y >= FlxG.height - 64)
