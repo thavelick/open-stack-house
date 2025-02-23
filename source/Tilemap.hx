@@ -15,7 +15,6 @@ class Tilemap extends FlxGroup
     public function new()
     {
         super();
-        immovable = true; // Make entire tilemap immovable
         createTiles();
     }
 
@@ -47,6 +46,7 @@ class Tilemap extends FlxGroup
             {
                 var tile = new FlxSprite(x * TILE_SIZE, GROUND_LEVEL * TILE_SIZE);
                 tile.makeGraphic(TILE_SIZE, TILE_SIZE, blockColors[FlxG.random.int(0, blockColors.length - 1)]);
+                tile.immovable = true; // Make each tile immovable
                 add(tile);
             }
         }
