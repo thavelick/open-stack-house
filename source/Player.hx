@@ -6,7 +6,7 @@ import flixel.util.FlxColor;
 
 class Player extends FlxSprite
 {
-    private static inline var SPEED:Float = 200;
+    private static inline var SPEED:Float = 150;
     private static inline var RISING_GRAVITY:Float = 500;
     private static inline var FALLING_GRAVITY:Float = 1200;
     private static inline var JUMP_FORCE:Float = -195;
