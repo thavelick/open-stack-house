@@ -22,7 +22,17 @@ class Player extends FlxSprite
     }
 
 
-    private function jump():Void
+    public function moveLeft():Void
+    {
+        velocity.x = -SPEED;
+    }
+
+    public function moveRight():Void
+    {
+        velocity.x = SPEED;
+    }
+
+    public function jump():Void
     {
         if (canJump)
         {
@@ -39,11 +49,11 @@ class Player extends FlxSprite
         // Movement
         if (FlxG.keys.pressed.RIGHT)
         {
-            velocity.x = SPEED;
+            moveRight();
         }
         if (FlxG.keys.pressed.LEFT)
         {
-            velocity.x = -SPEED;
+            moveLeft();
         }
 
         // Check for horizontal collisions
