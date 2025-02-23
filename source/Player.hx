@@ -59,7 +59,7 @@ class Player extends FlxSprite {
 		var playerTileY:Int = Math.floor(y / tileHeight);
 
 		// Check if there is a block directly under the player
-		if (tilemap.getTile(playerTileX, playerTileY + 1) != -1) {
+		if (tilemap.tileExistsAt(playerTileX, playerTileY + 1)) {
 			return true;
 		} else {
 			return false;
@@ -104,9 +104,9 @@ class Player extends FlxSprite {
 		} else if (velocity.y > 0) {
 			jumpState = FALLING;
 			acceleration.y = FALLING_GRAVITY;
-		} else {
-			// jumpState = GROUNDED;
-			// acceleration.y = 0;
+		} else if (isBlockUnder() || isOnGround()) {
+			jumpState = GROUNDED;
+			acceleration.y = 0;
 		}
 	}
 
