@@ -17,24 +17,17 @@ class Player extends FlxSprite
     {
         super(x, y);
         makeGraphic(28, 28, FlxColor.PINK);
-        // acceleration.y = RISING_GRAVITY; // Add initial gravity
+        acceleration.y = RISING_GRAVITY; // Add initial gravity
         immovable = false; // Player is movable
     }
 
 
     private function jump():Void
     {
-        trace("Jump pressed");
         if (canJump)
         {
-            trace("Applying jump force");
             velocity.y = JUMP_FORCE;
             canJump = false;
-            trace("starting jump, can jump = false");
-        }
-        else
-        {
-            trace("Can't jump - already in air");
         }
     }
 
@@ -87,12 +80,10 @@ class Player extends FlxSprite
         // Check collision with tilemap
         if (FlxG.collide(this, tilemap))
         {
-	    trace("'tilemap' collision");
             // Only set velocity.y to zero if we're landing on top of a block
             if (velocity.y == 0) // We're standing on something
             {
                 velocity.y = 0;
-		trace("landed on block can jump == true");
                 canJump = true;
             }
         }
@@ -100,7 +91,6 @@ class Player extends FlxSprite
         // Check collision with ground (32 pixels from bottom)
         if (y + height >= FlxG.height - 32)
         {
-	    trace("hit ground, canJump == true");
             y = FlxG.height - 32 - height;
             velocity.y = 0;
             canJump = true;
