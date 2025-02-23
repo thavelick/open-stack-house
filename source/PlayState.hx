@@ -1,6 +1,7 @@
-ou/Playackage;
+package;
 
 import flixel.FlxState;
+import flixel.text.FlxText;
 
 class PlayState extends FlxState
 {
@@ -8,7 +9,9 @@ class PlayState extends FlxState
 	{
 		super.create();
 
-		# ai! Let's add a string here with "Open Stack House" See: https://haxeflixel.com/documentation/hello-world/
+		var text = new FlxText(0, 0, 0, "Open Stack House", 64);
+		text.screenCenter();
+		add(text);
 	}
 
 	override public function update(elapsed:Float)
