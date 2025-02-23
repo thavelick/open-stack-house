@@ -89,6 +89,20 @@ class Player extends FlxSprite
         }
     }
 
+    private function applyGravity():Void
+    {
+        if (velocity.y < 0)
+        {
+            jumpState = RISING;
+            acceleration.y = RISING_GRAVITY;
+        }
+        else if (velocity.y > 0)
+        {
+            jumpState = FALLING;
+            acceleration.y = FALLING_GRAVITY;
+        }
+    }
+
     override public function update(elapsed:Float):Void
     {
         // Handle input and modify velocities first
@@ -110,18 +124,7 @@ class Player extends FlxSprite
             jump();
         }
 
-	// ai! extract this to applyGravity()
-        // Apply different gravity based on movement direction
-        if (velocity.y < 0)
-        {
-            jumpState = RISING;
-            acceleration.y = RISING_GRAVITY;
-        }
-        else if (velocity.y > 0)
-        {
-            jumpState = FALLING;
-            acceleration.y = FALLING_GRAVITY;
-        }
+        applyGravity();
 
         // Call super.update() to apply velocities
         super.update(elapsed);
