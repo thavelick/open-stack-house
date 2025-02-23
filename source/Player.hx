@@ -16,13 +16,14 @@ class Player extends FlxSprite {
 	private static inline var FALLING_GRAVITY:Float = 1200;
 	private static inline var JUMP_FORCE:Float = -195;
 
-	public var jumpState:JumpState = GROUNDED;
+	public var jumpState:JumpState = FALLING;
 	private var tilemap:Tilemap;
 
 	public function new(x:Float, y:Float) {
 		super(x, y);
 		makeGraphic(28, 28, FlxColor.PINK);
-		acceleration.y = RISING_GRAVITY; // Add initial gravity
+		acceleration.y = FALLING_GRAVITY; // Add initial gravity
+		velocity.y = 1; // Prvent player from getting floating at the start of the game
 		immovable = false; // Player is movable
 
 		tilemap = cast FlxG.state.members[2];
@@ -83,10 +84,18 @@ class Player extends FlxSprite {
 		} else if (velocity.y > 0) {
 			jumpState = FALLING;
 			acceleration.y = FALLING_GRAVITY;
+		} else {
+			jumpState = GROUNDED;
+			acceleration.y = 0;
 		}
 	}
 
 	private function handleInput():Void {
+		// Jumping
+		if (FlxG.keys.justPressed.UP || FlxG.keys.justPressed.X) {
+			jump();
+		}
+
 		// Handle input and modify velocities first
 		velocity.x = 0;
 
@@ -96,11 +105,6 @@ class Player extends FlxSprite {
 		}
 		if (FlxG.keys.pressed.LEFT) {
 			moveLeft();
-		}
-
-		// Jumping
-		if (FlxG.keys.justPressed.UP || FlxG.keys.justPressed.X) {
-			jump();
 		}
 	}
 
