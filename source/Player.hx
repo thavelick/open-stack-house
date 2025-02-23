@@ -50,6 +50,22 @@ class Player extends FlxSprite {
 		return y + height >= FlxG.height - 32;
 	}
 
+	private function isBlockUnder():Bool {
+		var tileWidth:Int = tilemap.tileWidth;
+		var tileHeight:Int = tilemap.tileHeight;
+
+		// Calculate the player's x and y coordinates in tile units
+		var playerTileX:Int = Math.floor(x / tileWidth);
+		var playerTileY:Int = Math.floor(y / tileHeight);
+
+		// Check if there is a block directly under the player
+		if (tilemap.getTile(playerTileX, playerTileY + 1) != -1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	private function checkCollisions():Void {
 		// Check for horizontal collisions
 		if (velocity.x != 0) {
