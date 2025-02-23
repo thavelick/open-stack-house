@@ -22,6 +22,22 @@ class Player extends FlxSprite
     }
 
 
+    private function tryJump():Void
+    {
+        trace("Jump pressed");
+        if (canJump)
+        {
+            trace("Applying jump force");
+            velocity.y = JUMP_FORCE;
+            canJump = false;
+            trace("starting jump, can jump = false");
+        }
+        else
+        {
+            trace("Can't jump - already in air");
+        }
+    }
+
     override public function update(elapsed:Float):Void
     {
         // Handle input and modify velocities first
@@ -46,18 +62,7 @@ class Player extends FlxSprite
         // Jumping
         if (FlxG.keys.justPressed.UP || FlxG.keys.justPressed.X)
         {
-            trace("Jump pressed");
-            if (canJump)
-            {
-                trace("Applying jump force");
-                velocity.y = JUMP_FORCE;
-                canJump = false;
-		trace("starting jump, can jump = false");
-            }
-            else
-            {
-                trace("Can't jump - already in air");
-            }
+            tryJump();
         }
 
         // Apply different gravity based on movement direction
