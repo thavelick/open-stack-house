@@ -21,8 +21,10 @@ class Player extends FlxSprite
         immovable = false; // Player is movable
     }
 
+    # ai! dead function remove
     private function getTileBelow():FlxSprite
     {
+        return null;
         // Check for a tile directly below the player
         var tilemap:Tilemap = cast FlxG.state.members[2];
         for (tile in tilemap.members)
@@ -103,16 +105,6 @@ class Player extends FlxSprite
             {
                 velocity.y = 0;
 		trace("landed on block can jump == true");
-                canJump = true;
-            }
-        }
-        else if (velocity.y == 0)
-        {
-            // Check if we're standing on a block
-            var tileBelow = getTileBelow();
-            if (tileBelow == null)
-            {
-	    	trace("found a block, canJump == true");
                 canJump = true;
             }
         }
