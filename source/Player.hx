@@ -28,7 +28,7 @@ class Player extends FlxSprite
         for (tile in tilemap.members)
         {
             var block:FlxSprite = cast tile;
-            if (block != null && block.overlapsPoint(getPosition()) && 
+            if (block != null && block.overlapsPoint(getPosition()) &&
                 block.y >= y + height && block.x < x + width && block.x + block.width > x)
             {
                 return block;
@@ -67,6 +67,7 @@ class Player extends FlxSprite
                 trace("Applying jump force");
                 velocity.y = JUMP_FORCE;
                 canJump = false;
+		trace("starting jump, can jump = false");
             }
             else
             {
@@ -89,18 +90,18 @@ class Player extends FlxSprite
         // Call super.update() to apply velocities
         super.update(elapsed);
 
-        trace('Player position: (${x}, ${y}) Velocity: (${velocity.x}, ${velocity.y}) isRising: $isRising');
 
         // Ground collision check
         var tilemap = FlxG.state.members[2]; // Tilemap is at index 2
-        
+
         // Check collision with tilemap
         if (FlxG.collide(this, tilemap))
         {
             // Only set velocity.y to zero if we're landing on top of a block
-            if (velocity.y > 0) // We're moving downward
+            if (velocity.y >= 0) // We're moving downward or standing on something
             {
                 velocity.y = 0;
+		trace("landed on block can jump == true");
                 canJump = true;
             }
         }
@@ -110,13 +111,15 @@ class Player extends FlxSprite
             var tileBelow = getTileBelow();
             if (tileBelow == null)
             {
-                canJump = false;
+	    	trace("found a block, canJump == true");
+                canJump = true;
             }
         }
-        
+
         // Check collision with ground (32 pixels from bottom)
         if (y + height >= FlxG.height - 32)
         {
+	    trace("hit ground, canJump == true");
             y = FlxG.height - 32 - height;
             velocity.y = 0;
             canJump = true;
