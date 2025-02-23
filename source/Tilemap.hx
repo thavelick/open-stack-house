@@ -20,23 +20,63 @@ class Tilemap extends FlxGroup
 
     private function createTiles():Void
     {
-        // Create a grid of tiles at the bottom
-        for (y in GROUND_LEVEL - 2...GROUND_LEVEL + 1) // Create 3 rows
+        // Define the block colors
+        var blockColors:Array<FlxColor> = [
+            FlxColor.GRAY,
+            FlxColor.fromRGB(101, 67, 33), // Dark Brown
+            FlxColor.fromRGB(181, 101, 29), // Light Brown
+            FlxColor.ORANGE,
+            FlxColor.RED,
+            FlxColor.YELLOW,
+            FlxColor.fromRGB(0, 100, 0), // Dark Green
+            FlxColor.fromRGB(34, 139, 34), // Lighter Green
+            FlxColor.fromRGB(173, 216, 230), // Light Blue
+            FlxColor.PURPLE
+        ];
+
+        // Create the ground row
+        for (x in 0...8) // 8 columns
+        {
+            // Skip player start column
+            if (x == PLAYER_START_X)
+                continue;
+
+            // Always create ground blocks
+            var tile = new FlxSprite(x * TILE_SIZE, GROUND_LEVEL * TILE_SIZE);
+            tile.makeGraphic(TILE_SIZE, TILE_SIZE, blockColors[FlxG.random.int(0, blockColors.length - 1)]);
+            add(tile);
+        }
+
+        // Create stacked blocks above ground
+        for (y in GROUND_LEVEL - 2...GROUND_LEVEL) // Create 2 rows above ground
         {
             for (x in 0...8) // 8 columns
             {
-                // Skip player start position
-                if (x == PLAYER_START_X && y == PLAYER_START_Y)
+                // Skip player start column
+                if (x == PLAYER_START_X)
                     continue;
 
-                // Random chance to create a block
-                if (FlxG.random.bool(70)) // 70% chance to create a block
+                // Only create block if there's a block below
+                if (getTileAt(x, y + 1) != null && FlxG.random.bool(70)) // 70% chance to create a block
                 {
                     var tile = new FlxSprite(x * TILE_SIZE, y * TILE_SIZE);
-                    tile.makeGraphic(TILE_SIZE, TILE_SIZE, FlxG.random.color());
+                    tile.makeGraphic(TILE_SIZE, TILE_SIZE, blockColors[FlxG.random.int(0, blockColors.length - 1)]);
                     add(tile);
                 }
             }
         }
+    }
+
+    private function getTileAt(x:Int, y:Int):FlxSprite
+    {
+        for (member in members)
+        {
+            var tile:FlxSprite = cast member;
+            if (tile.x == x * TILE_SIZE && tile.y == y * TILE_SIZE)
+            {
+                return tile;
+            }
+        }
+        return null;
     }
 }
