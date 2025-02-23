@@ -106,7 +106,11 @@ class Player extends FlxSprite {
 		} else if (velocity.y > 0) {
 			jumpState = FALLING;
 			acceleration.y = FALLING_GRAVITY;
-		} else if (isBlockUnder() || isOnGround()) {
+		} else if (!isBlockUnder() && !isOnGround()) {
+			jumpState = FALLING;
+			acceleration.y = FALLING_GRAVITY;
+		}
+		else {
 			jumpState = GROUNDED;
 			acceleration.y = 0;
 		}
