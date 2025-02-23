@@ -8,7 +8,7 @@ import flixel.group.FlxGroup;
 class Tilemap extends FlxGroup
 {
     private static inline var TILE_SIZE:Int = 32;
-    private static inline var GROUND_LEVEL:Int = 7; // 7th row from bottom
+    private static inline var GROUND_LEVEL:Int = 6; // 6th row from bottom (shifted up one row)
     private static inline var PLAYER_START_X:Int = 3; // Player starts at 4th column (0-based index)
     private static inline var PLAYER_START_Y:Int = 6; // Player starts at 7th row from top
 
