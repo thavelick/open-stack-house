@@ -4,11 +4,13 @@ import flixel.FlxState;
 import flixel.FlxG;
 import flixel.util.FlxColor;
 import flixel.addons.display.shapes.FlxShapeBox;
+import flixel.text.FlxText;
 
 class GameState extends FlxState {
 	private var player:Player;
 	private var border:FlxShapeBox;
 	private var tilemap:Tilemap;
+	private var debugText:FlxText;
 
 	override public function create() {
 		super.create();
@@ -28,6 +30,11 @@ class GameState extends FlxState {
 		// Create player at bottom center of screen
 		player = new Player((FlxG.width - 32) / 2, FlxG.height - 64);
 		add(player);
+
+		// Create debug text
+		debugText = new FlxText(10, 10, 200, "Jump State: ", null, null);
+		debugText.color = FlxColor.WHITE;
+		add(debugText);
 	}
 
 	override public function update(elapsed:Float) {
@@ -36,5 +43,7 @@ class GameState extends FlxState {
 		if (FlxG.keys.justPressed.P) {
 			FlxG.switchState(PauseState.new);
 		}
+
+		debugText.text = "Jump State: " + player.jumpState.toString();
 	}
 }
