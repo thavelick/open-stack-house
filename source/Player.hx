@@ -18,6 +18,7 @@ class Player extends FlxSprite
     private static inline var FALLING_GRAVITY:Float = 1200;
     private static inline var JUMP_FORCE:Float = -195;
     private var jumpState:JumpState = GROUNDED;
+    private var tilemap:Tilemap;
 
     public function new(x:Float, y:Float)
     {
@@ -25,6 +26,8 @@ class Player extends FlxSprite
         makeGraphic(28, 28, FlxColor.PINK);
         acceleration.y = RISING_GRAVITY; // Add initial gravity
         immovable = false; // Player is movable
+
+		tilemap = cast FlxG.state.members[2];
     }
 
 
@@ -51,9 +54,6 @@ class Player extends FlxSprite
 
     private function checkCollisions():Void
     {
-        // ai! Let's extract tilemap to an object var set in the constructor
-        var tilemap = FlxG.state.members[2]; // Tilemap is at index 2
-
         // Check for horizontal collisions
         if (velocity.x != 0)
         {
