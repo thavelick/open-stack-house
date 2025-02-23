@@ -30,5 +30,15 @@ class Player extends FlxSprite
         {
             velocity.x = SPEED;
         }
+
+        // Screen bounds
+        if (x < 0)
+        {
+            x = 0;
+        }
+        else if (x > FlxG.width - width)
+        {
+            x = FlxG.width - width;
+        }
     }
 }
