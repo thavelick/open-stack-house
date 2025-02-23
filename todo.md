@@ -2,7 +2,7 @@
 
 ### Step 1.1: Install Development Tools
 - [x] Download and install [Haxe](https://haxe.org/download/)
-- [ ] Install [Haxe Flixel](https://haxeflixel.com/documentation/installation/)
+- [x] Install [Haxe Flixel](https://haxeflixel.com/documentation/installation/)
 - [ ] Verify Haxe and Haxe Flixel installations via command line
 
 ### Step 1.2: Set Up IDE
