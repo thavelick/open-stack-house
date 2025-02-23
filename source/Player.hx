@@ -20,9 +20,7 @@ class Player extends FlxSprite
 
     override public function update(elapsed:Float):Void
     {
-        super.update(elapsed);
-        
-        // Reset velocity
+        // Handle input and modify velocities first
         velocity.x = 0;
 
         // Movement
@@ -50,6 +48,9 @@ class Player extends FlxSprite
                 trace("Can't jump - already in air");
             }
         }
+        
+        // Call super.update() to apply velocities
+        super.update(elapsed);
         
         trace('Player position: (${x}, ${y}) Velocity: (${velocity.x}, ${velocity.y})');
 
