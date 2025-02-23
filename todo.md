@@ -3,43 +3,37 @@
 ### Step 1.1: Install Development Tools
 - [x] Download and install [Haxe](https://haxe.org/download/)
 - [x] Install [Haxe Flixel](https://haxeflixel.com/documentation/installation/)
-- [ ] Verify Haxe and Haxe Flixel installations via command line
+- [x] Verify Haxe and Haxe Flixel installations via command line
 
 ### Step 1.2: Set Up IDE
-- [ ] Install [Visual Studio Code](https://code.visualstudio.com/) (or preferred Haxe-compatible IDE)
-- [ ] Install necessary extensions for Haxe and Haxe Flixel
+- [x] Install [Visual Studio Code](https://code.visualstudio.com/) (or preferred Haxe-compatible IDE)
+- [x] Install necessary extensions for Haxe and Haxe Flixel
 
 ### Step 1.3: Initialize Git and GitHub Repository
-- [ ] Initialize Git in the project directory
-- [ ] Create a `.gitignore` file excluding `assets/`, `build/`, and compiled/temp files
-- [ ] Make the initial commit with the message "Initial project setup with directory structure and build configuration"
-- [ ] Create a new repository on GitHub named "OpenStackHouse"
-- [ ] Push the local repository to GitHub and set the remote origin
+- [x] Initialize Git in the project directory
+- [x] Create a `.gitignore` file excluding `assets/`, `build/`, and compiled/temp files
+- [x] Make the initial commit
+- [x] Create a new repository on GitHub named "open-stack-house"
+- [x] Push the local repository to GitHub and set the remote origin
 
 ### Step 1.4: Configure Project Structure
-- [ ] Create the following directories:
-  - `assets/graphics`
-  - `assets/audio`
-  - `src/`
-  - `build/`
-- [ ] Set up the `build.hxml` configuration file targeting HTML5 for web deployment
-
+- [x] Set up haxe flixel template project
 ---
 
 ## Phase 2: Core Architecture Development
 
 ### Step 2.1: Implement Game States Framework
-- [ ] Define base game states using Haxe Flixel’s state management
-- [ ] Create placeholder classes for:
+- [x] Define base game states using Haxe Flixel’s state management
+- [x] Create placeholder classes for:
   - Main Menu
   - Gameplay
   - Pause
   - Game Over
-- [ ] Implement state transitions between states
+- [x] Implement state transitions between states
 
 ### Step 2.2: Set Up Main Game Loop
-- [ ] Initialize the game in the Main Menu state
-- [ ] Ensure the game transitions to Gameplay state upon starting
+- [x] Initialize the game in the Main Menu state
+- [x] Ensure the game transitions to Gameplay state upon starting
 
 ### Step 2.3: Develop Asset Loader
 - [ ] Create functions to load graphics assets
@@ -59,20 +53,20 @@
 - [ ] Verify idle animation plays by default in the Gameplay state
 
 ### Step 3.2: Implement Player Class with Movement
-- [ ] Create a `Player` class extending `FlxSprite` in the `src/` directory
-- [ ] Initialize the player with position, velocity, and state properties
+- [x] Create a `Player` class extending `FlxSprite` in the `src/` directory
+- [x] Initialize the player with position, velocity, and state properties
 - [ ] Add methods for movement and animation control
 
 ### Step 3.3: Code Player Movement
-- [ ] Implement left movement using the left arrow key
-- [ ] Implement right movement using the right arrow key
-- [ ] Ensure movement is smooth and responsive
-- [ ] Add boundary checks to keep the player within the 8x7 playfield grid
+- [x] Implement left movement using the left arrow key
+- [x] Implement right movement using the right arrow key
+- [x] Ensure movement is smooth and responsive
+- [x] Add boundary checks to keep the player within the 8x7 playfield grid
 
 ### Step 3.4: Develop Jumping Mechanics
-- [ ] Implement jump initiation using the up arrow and X key
+- [x] Implement jump initiation using the up arrow and X key
 - [ ] Set consistent jump height unaffected by carrying blocks
-- [ ] Allow mid-air direction changes (left/right) during jumping or falling
+- [x] Allow mid-air direction changes (left/right) during jumping or falling
 - [ ] Ensure jump animations play correctly during the jump action
 - [ ] Return to idle or walking animation upon landing
 
