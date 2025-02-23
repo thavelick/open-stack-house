@@ -103,9 +103,8 @@ class Player extends FlxSprite
         }
     }
 
-    override public function update(elapsed:Float):Void
+    private function handleInput():Void
     {
-	// ai! extract a handleInput() method
         // Handle input and modify velocities first
         velocity.x = 0;
 
@@ -124,7 +123,11 @@ class Player extends FlxSprite
         {
             jump();
         }
+    }
 
+    override public function update(elapsed:Float):Void
+    {
+        handleInput();
         applyGravity();
 
         // Call super.update() to apply velocities
