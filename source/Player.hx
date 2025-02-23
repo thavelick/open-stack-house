@@ -17,7 +17,7 @@ class Player extends FlxSprite
     {
         super(x, y);
         makeGraphic(28, 28, FlxColor.PINK);
-        acceleration.y = RISING_GRAVITY; // Add initial gravity
+        // acceleration.y = RISING_GRAVITY; // Add initial gravity
         immovable = false; // Player is movable
     }
 
