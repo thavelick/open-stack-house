@@ -89,8 +89,8 @@ class Player extends FlxSprite {
 			jumpState = FALLING;
 			acceleration.y = FALLING_GRAVITY;
 		} else {
-			jumpState = GROUNDED;
-			acceleration.y = 0;
+			// jumpState = GROUNDED;
+			// acceleration.y = 0;
 		}
 	}
 
