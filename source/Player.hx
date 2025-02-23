@@ -6,7 +6,7 @@ import flixel.util.FlxColor;
 
 class Player extends FlxSprite
 {
-    private static inline var SPEED:Float = 56;
+    private static inline var SPEED:Float = 100;
     private static inline var RISING_GRAVITY:Float = 500;
     private static inline var FALLING_GRAVITY:Float = 1200;
     private static inline var JUMP_FORCE:Float = -195;
@@ -16,7 +16,7 @@ class Player extends FlxSprite
     public function new(x:Float, y:Float)
     {
         super(x, y);
-        makeGraphic(32, 32, FlxColor.PURPLE);
+        makeGraphic(28, 28, FlxColor.PINK);
         acceleration.y = RISING_GRAVITY; // Add initial gravity
         immovable = false; // Player is movable
     }
