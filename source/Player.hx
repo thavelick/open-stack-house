@@ -8,7 +8,7 @@ class Player extends FlxSprite
 {
     private static inline var SPEED:Float = 200;
     private static inline var RISING_GRAVITY:Float = 500;
-    private static inline var FALLING_GRAVITY:Float = 800;
+    private static inline var FALLING_GRAVITY:Float = 1200;
     private static inline var JUMP_FORCE:Float = -195;
     private var canJump:Bool = true;
     private var isRising:Bool = false;
@@ -50,7 +50,7 @@ class Player extends FlxSprite
                 trace("Can't jump - already in air");
             }
         }
-        
+
         // Apply different gravity based on movement direction
         if (velocity.y < 0)
         {
@@ -65,7 +65,7 @@ class Player extends FlxSprite
 
         // Call super.update() to apply velocities
         super.update(elapsed);
-        
+
         trace('Player position: (${x}, ${y}) Velocity: (${velocity.x}, ${velocity.y}) isRising: $isRising');
 
         // Ground collision check
