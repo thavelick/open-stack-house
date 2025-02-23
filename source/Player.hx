@@ -22,7 +22,7 @@ class Player extends FlxSprite
     }
 
 
-    private function tryJump():Void
+    private function jump():Void
     {
         trace("Jump pressed");
         if (canJump)
@@ -62,7 +62,7 @@ class Player extends FlxSprite
         // Jumping
         if (FlxG.keys.justPressed.UP || FlxG.keys.justPressed.X)
         {
-            tryJump();
+            jump();
         }
 
         // Apply different gravity based on movement direction
