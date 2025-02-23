@@ -21,23 +21,6 @@ class Player extends FlxSprite
         immovable = false; // Player is movable
     }
 
-    # ai! dead function remove
-    private function getTileBelow():FlxSprite
-    {
-        return null;
-        // Check for a tile directly below the player
-        var tilemap:Tilemap = cast FlxG.state.members[2];
-        for (tile in tilemap.members)
-        {
-            var block:FlxSprite = cast tile;
-            if (block != null && block.overlapsPoint(getPosition()) &&
-                block.y >= y + height && block.x < x + width && block.x + block.width > x)
-            {
-                return block;
-            }
-        }
-        return null;
-    }
 
     override public function update(elapsed:Float):Void
     {
