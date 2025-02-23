@@ -110,6 +110,7 @@ class Player extends FlxSprite
             jump();
         }
 
+	// ai! extract this to applyGravity()
         // Apply different gravity based on movement direction
         if (velocity.y < 0)
         {
