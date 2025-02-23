@@ -74,14 +74,19 @@ class Player extends FlxSprite {
 			FlxG.collide(this, tilemap);
 		}
 
-		// Check collision with tilemap
-		if (FlxG.collide(this, tilemap)) {
+		var tileCollision:Bool = FlxG.collide(this, tilemap);
+		var blockUnder:Bool = isBlockUnder();
+
+		// Check collision with tilemap or block underneath
+		if (tileCollision || blockUnder) {
 			// Only set velocity.y to zero if we're landing on top of a block
-			if (velocity.y == 0) // We're standing on something
+			if (velocity.y >= 0) // We're standing on something
 			{
 				velocity.y = 0;
 				jumpState = GROUNDED;
 			}
+		} else if (!isOnGround()) {
+			jumpState = FALLING;
 		}
 
 		// Check collision with ground (32 pixels from bottom)
@@ -106,13 +111,6 @@ class Player extends FlxSprite {
 		} else if (velocity.y > 0) {
 			jumpState = FALLING;
 			acceleration.y = FALLING_GRAVITY;
-		} else if (!isBlockUnder() && !isOnGround()) {
-			jumpState = FALLING;
-			acceleration.y = FALLING_GRAVITY;
-		}
-		else {
-			jumpState = GROUNDED;
-			acceleration.y = 0;
 		}
 	}
 
