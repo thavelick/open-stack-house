@@ -105,6 +105,7 @@ class Player extends FlxSprite
 
     override public function update(elapsed:Float):Void
     {
+	// ai! extract a handleInput() method
         // Handle input and modify velocities first
         velocity.x = 0;
 
