@@ -8,7 +8,7 @@ class Player extends FlxSprite
 {
     private static inline var SPEED:Float = 200;
     private static inline var GRAVITY:Float = 500;
-    private static inline var JUMP_FORCE:Float = -275;
+    private static inline var JUMP_FORCE:Float = -195;
     private var canJump:Bool = true;
 
     public function new(x:Float, y:Float)
