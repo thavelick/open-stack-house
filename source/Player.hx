@@ -46,6 +46,10 @@ class Player extends FlxSprite {
 		}
 	}
 
+	private function isOnGround():Bool {
+		return y + height >= FlxG.height - 32;
+	}
+
 	private function checkCollisions():Void {
 		// Check for horizontal collisions
 		if (velocity.x != 0) {
@@ -63,7 +67,7 @@ class Player extends FlxSprite {
 		}
 
 		// Check collision with ground (32 pixels from bottom)
-		if (y + height >= FlxG.height - 32) {
+		if (isOnGround()) {
 			y = FlxG.height - 32 - height;
 			velocity.y = 0;
 			jumpState = GROUNDED;
@@ -84,7 +88,7 @@ class Player extends FlxSprite {
 		} else if (velocity.y > 0) {
 			jumpState = FALLING;
 			acceleration.y = FALLING_GRAVITY;
-		} else {
+		} else if (isOnGround()) {
 			jumpState = GROUNDED;
 			acceleration.y = 0;
 		}
