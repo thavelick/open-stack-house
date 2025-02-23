@@ -18,6 +18,7 @@ class Player extends FlxSprite
         super(x, y);
         makeGraphic(32, 32, FlxColor.PURPLE);
         acceleration.y = RISING_GRAVITY; // Add initial gravity
+        immovable = false; // Player is movable
     }
 
     override public function update(elapsed:Float):Void
@@ -33,6 +34,12 @@ class Player extends FlxSprite
         if (FlxG.keys.pressed.RIGHT)
         {
             velocity.x = SPEED;
+        }
+
+        // Check for horizontal collisions
+        if (velocity.x != 0)
+        {
+            FlxG.collide(this, FlxG.state.members[2]); // Tilemap is at index 2
         }
 
         // Jumping
@@ -69,9 +76,8 @@ class Player extends FlxSprite
         trace('Player position: (${x}, ${y}) Velocity: (${velocity.x}, ${velocity.y}) isRising: $isRising');
 
         // Ground collision check
-        if (y >= FlxG.height - 64)
+        if (FlxG.collide(this, FlxG.state.members[2])) // Tilemap is at index 2
         {
-            y = FlxG.height - 64;
             velocity.y = 0;
             canJump = true;
         }

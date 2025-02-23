@@ -64,6 +64,7 @@ class Tilemap extends FlxGroup
                 {
                     var tile = new FlxSprite(x * TILE_SIZE, y * TILE_SIZE);
                     tile.makeGraphic(TILE_SIZE, TILE_SIZE, blockColors[FlxG.random.int(0, blockColors.length - 1)]);
+                    tile.immovable = true; // Blocks are immovable
                     add(tile);
                 }
             }
