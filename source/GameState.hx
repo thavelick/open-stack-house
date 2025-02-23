@@ -14,7 +14,7 @@ class GameState extends FlxState
     {
         super.update(elapsed);
 
-        if (FlxG.keys.justPressed.ESCAPE)
+        if (FlxG.keys.justPressed.P)
         {
             FlxG.switchState(new PauseState());
         }

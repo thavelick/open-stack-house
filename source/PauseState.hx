@@ -24,7 +24,7 @@ class PauseState extends FlxState
     {
         super.update(elapsed);
 
-        if (FlxG.keys.justPressed.ESCAPE)
+        if (FlxG.keys.justPressed.P)
         {
             resumeGame();
         }
