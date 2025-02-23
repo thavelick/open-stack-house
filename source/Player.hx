@@ -51,19 +51,21 @@ class Player extends FlxSprite {
 	}
 
 	private function isBlockUnder():Bool {
-		var tileWidth:Int = tilemap.tileWidth;
-		var tileHeight:Int = tilemap.tileHeight;
+		var tileWidth:Int = 32;
+		var tileHeight:Int = 32;
 
 		// Calculate the player's x and y coordinates in tile units
 		var playerTileX:Int = Math.floor(x / tileWidth);
 		var playerTileY:Int = Math.floor(y / tileHeight);
 
 		// Check if there is a block directly under the player
-		if (tilemap.tileExistsAt(playerTileX, playerTileY + 1)) {
-			return true;
-		} else {
-			return false;
+		for (member in tilemap.members) {
+			var tile:FlxSprite = cast member;
+			if (tile.x == playerTileX * tileWidth && tile.y == (playerTileY + 1) * tileHeight) {
+				return true;
+			}
 		}
+		return false;
 	}
 
 	private function checkCollisions():Void {
