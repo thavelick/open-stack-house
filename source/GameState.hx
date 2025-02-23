@@ -12,7 +12,7 @@ class GameState extends FlxState
         super.create();
         
         // Create player at bottom center of screen
-        player = new Player((FlxG.width - 32) / 2, FlxG.height - 64);
+        player = new Player((FlxG.width - 32) / 2, FlxG.height - 48);
         add(player);
     }
 
