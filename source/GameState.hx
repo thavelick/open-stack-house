@@ -18,8 +18,12 @@ class GameState extends FlxState
         border = new FlxShapeBox(0, 0, FlxG.width, FlxG.height, {thickness: 2, color: FlxColor.BLUE}, FlxColor.TRANSPARENT);
         add(border);
 
+        // Create ground line
+        var ground = new FlxShapeBox(0, FlxG.height - 32, FlxG.width, 1, {thickness: 1, color: FlxColor.GREEN}, FlxColor.TRANSPARENT);
+        add(ground);
+
         // Create player at bottom center of screen
-        player = new Player((FlxG.width - 32) / 2, FlxG.height - 48);
+        player = new Player((FlxG.width - 32) / 2, FlxG.height - 64);
         add(player);
     }
 
