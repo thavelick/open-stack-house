@@ -81,8 +81,12 @@ class Player extends FlxSprite
         // Check collision with tilemap
         if (FlxG.collide(this, tilemap))
         {
-            velocity.y = 0;
-            canJump = true;
+            // Only set velocity.y to zero if we're landing on top of a block
+            if (velocity.y > 0) // We're moving downward
+            {
+                velocity.y = 0;
+                canJump = true;
+            }
         }
         
         // Check collision with ground (32 pixels from bottom)
